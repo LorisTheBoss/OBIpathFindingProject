@@ -1,1 +1,1 @@
-<?php ('Location: /index.html');?>
+<?php ('Location: index.html');?>
