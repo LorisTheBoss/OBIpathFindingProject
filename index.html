@@ -11,13 +11,12 @@
   <script language="javascript" type="text/javascript" src="map/bspmap.js"></script>
   <script language="javascript" type="text/javascript" src="map/mazemap.js"></script>
   <script language="javascript" type="text/javascript" src="astarpathfinder.js"></script>
-  <script src="stylesheet/pageStyle.css"></script>
+  <link href="stylesheet/pageStyle.css" rel="stylesheet">
 
 </head>
 
 <body>
   <h1>A*</h1>
-
   <p>
     This is a demonstration of the
     <a href="https://en.wikipedia.org/wiki/A*_search_algorithm">A* "search" algorithm</a>
@@ -25,6 +24,16 @@
     is implemented in JavaScript using
     <a href="http://p5js.org">p5.js</a>.
   </p>
+
+  <div id="canvasPlaceholder"></div>
+
+  <div>
+    <button onclick="runpause()">Run</button>
+    <button onclick="step()">Step</button>
+    <button onclick="restart()">Restart</button>
+    <input type="checkbox" onchange="toggleDiagonals()"> Diagonal</input>
+  </div>
+
 </body>
 
 </html>

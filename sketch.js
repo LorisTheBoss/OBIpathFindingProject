@@ -59,67 +59,7 @@ function logTimings() {
     }
 }
 
-
-function SettingBox(label, x, y, isSet, callback) {
-    this.label = label;
-    this.x = x;
-    this.y = y;
-    this.isSet = isSet;
-    this.callback = callback;
-
-    this.show = function() {
-        //noFill();
-        strokeWeight(1);
-        stroke(0);
-        noFill();
-        ellipse(this.x + 10, this.y + 10, 20, 20);
-        if (this.isSet) {
-            fill(0);
-            ellipse(this.x + 10, this.y + 10, 3, 3);
-        }
-        fill(0);
-        noStroke();
-        text(label, this.x + 25, this.y + 15);
-    }
-
-    this.mouseClick = function(x, y) {
-        if (x > this.x && x <= this.x + 20 &&
-            y > this.y && y <= this.y + 20) {
-            this.isSet = !this.isSet;
-            if (this.callback != null)
-                this.callback(this);
-        }
-    }
-}
-
-function Button(label, x, y, w, h, callback) {
-    this.label = label;
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-    this.callback = callback;
-
-    this.show = function() {
-        stroke(0);
-        strokeWeight(1);
-        noFill();
-        rect(this.x, this.y, this.w, this.h);
-        fill(0);
-        noStroke();
-        text(this.label, this.x + 5, this.y + 5, this.w - 10, this.h - 10);
-    }
-
-    this.mouseClick = function(x, y) {
-        if (this.callback != null &&
-            x > this.x && x <= this.x + this.w &&
-            y > this.y && y <= this.y + this.h) {
-            this.callback(this);
-        }
-    }
-}
-
-  // Start and end
+// Start and end
   // start = grid[0][0];
   // end = grid[cols - 1][rows - 1];
   // start.wall = false;
@@ -186,22 +126,19 @@ function initaliseSearchExample(rows, cols) {
 function setup() {
     startTime();
 
+    let canvas;
+
     if (getURL().toLowerCase().indexOf("fullscreen") === -1) {
-        createCanvas(600, 600);
+        canvas = createCanvas(600, 600);
     } else {
         var sz = min(windowWidth, windowHeight);
-        createCanvas(sz, sz);
+        canvas = createCanvas(sz, sz);
     }
+    
+    canvas.parent("canvasPlaceholder");
     console.log('A*');
 
     initaliseSearchExample(cols, rows);
-
-    runPauseButton = new Button("run", 430, 20, 50, 30, runpause);
-    uiElements.push(runPauseButton);
-    uiElements.push(new Button("step", 430, 70, 50, 30, step));
-    uiElements.push(new Button("restart", 430, 120, 50, 30, restart));
-    uiElements.push(new SettingBox("AllowDiag", 430, 180, allowDiagonals, toggleDiagonals));
-
     recordTime("Setup");
 }
 
