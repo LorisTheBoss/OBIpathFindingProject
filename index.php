@@ -1,0 +1,1 @@
+<?php ('Location: /index.html');?>
